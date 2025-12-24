@@ -1,0 +1,11 @@
+:root{
+  --color-bg: #0B0E14;
+  --color-panel: #121826;
+  --color-gold: #F5C16C;
+  --color-red: #C43D3D;
+  --color-cyan: #4FD1C5;
+  --text-primary: #E6EEF3;
+  --muted: #98A0B2;
+}
+
+/* Utility to expose CSS vars to Tailwind via colors if needed */
