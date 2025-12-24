@@ -2,9 +2,7 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
 import './index.css'
-import '@rainbow-me/rainbowkit/styles.css'
-
-import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit'
+import { ConnectKitProvider, getDefaultClient } from 'connectkit'
 import { configureChains, createClient, WagmiConfig, chain } from 'wagmi'
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc'
 
@@ -15,16 +13,16 @@ const { chains, provider } = configureChains(
   [jsonRpcProvider({ rpc: () => ({ http: 'https://api.avax.network/ext/bc/C/rpc' }) })]
 )
 
-const { connectors } = getDefaultWallets({ appName: 'AVAX CHRONICLES', chains })
+const { connectors } = getDefaultClient({ appName: 'AVAX CHRONICLES', chains })
 
 const wagmiClient = createClient({ autoConnect: true, connectors, provider })
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider chains={chains}>
+      <ConnectKitProvider>
         <App />
-      </RainbowKitProvider>
+      </ConnectKitProvider>
     </WagmiConfig>
   </React.StrictMode>
 )
